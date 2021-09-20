@@ -25,11 +25,10 @@ The action is useful on Continuous Deployment (CD) scenarios, where a step can b
 
 ### Prerequisites
 
-* Ensure you have [PowerShell 7.1](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1) with [Azure Az PowerShell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-6.4.0) installed on the runner.
+If your GitHub Actions workflows are running on a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners), ensure you have installed:
 
-If your GitHub Actions workflows are running on a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners):
-
-* Ensure you have runner `v2.280.3` or later installed.
+* [PowerShell 7.1](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1) with [Azure Az PowerShell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-6.4.0) 
+* [GitHub Actions Runner](https://github.com/actions/runner) `v2.280.3` or later.
 
 ## Example Usage
 
