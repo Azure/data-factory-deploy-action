@@ -1,6 +1,6 @@
 # Azure Data Factory Deploy Action
 
-GitHub Action for side-effect free deployment of Azure Data Factory resources
+GitHub Action for side-effect free deployment of Azure Data Factory resources.
 
 ## How it works
 
