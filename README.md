@@ -1,14 +1,65 @@
-# Project
+# Azure Data Factory Deploy Action
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+GitHub Action for side-effect free deployment of Data Factory.
 
-As the maintainer of this project, please make a few updates:
+## How it works
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+The GitHub Action uses [pre and post-deployment scripts](https://docs.microsoft.com/en-us/azure/data-factory/continuous-integration-deployment#script) to prevent the deployment from potential side effects, such as:
+
+* Execution of active triggers during the deployment process that could corrupt resources relationships or have pipelines in undesired states.
+* Availability of unused resources that could bring confusion to data engineers and reduce maintainability.
+
+![Architecture Design](./images/architecture-design.png)
+
+It is designed to run the following steps sequentially:
+
+1. A pre-deployment task checks for all active triggers and stop them.
+2. An ARM template deployment task is executed.
+3. A post-deployment task deletes all resources that have  been removed from the ARM template (triggers, pipelines, dataflows, datasets, linked services, Integration Runtimes) and restarts the active triggers.
+
+## When to use
+
+The action is useful on Continuous Deployment (CD) scenarios, where a step can be added in a workflow to deploy the Data Factory resources.
+
+## Getting Started
+
+### Prerequisites
+
+* Ensure you have [PowerShell 7.1](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1) with [Azure Az PowerShell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-6.4.0) installed on the runner.
+
+If your GitHub Actions workflows are running on a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners):
+
+* Ensure you have runner `v2.280.3` or later installed.
+
+## Example Usage
+
+```yml
+steps:
+  - name: Login via Az module
+    uses: azure/login@v1
+    with:
+      creds: ${{ secrets.AZURE_CREDENTIALS }}
+      enable-AzPSSession: true 
+
+  - name: Deploy resources
+    uses: Azure/data-factory-deploy-action@v1.0.0
+    with:
+      resourceGroupName: myResourceGroup
+      dataFactoryName: myDataFactory
+      armTemplateFile: myArmTemplate.json
+      # armTemplateParametersFile: myArmTemplateParameters.json [optional]
+      # additionalParameters: 'key1=value key2=value keyN=value' [optional]
+```
+
+### Inputs
+
+| Name | Description | Required | Default value |
+| --- | --- | --- | --- |
+| `resourceGroupName` | Data Factory resource group name | true | |
+| `dataFactoryName` | Data Factory name | true |  |
+| `armTemplateFile` | Data Factory ARM template file | false | `ARMTemplateForFactory.json`  |
+| `armTemplateParametersFile` | Data Factory ARM template parameters file | false | `ARMTemplateParametersForFactory.json`  |
+| `additionalParameters` | Data Factory custom parameters. Key-values must be splitted by space. | false | |
 
 ## Contributing
 
