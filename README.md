@@ -30,7 +30,7 @@ If your GitHub Actions workflows are running on a [self-hosted runner](https://d
 * [PowerShell 7.1](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.1) with [Azure Az PowerShell module](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps?view=azps-6.4.0) 
 * [GitHub Actions Runner](https://github.com/actions/runner) `v2.280.3` or later.
 
-## Example Usage
+### Example Usage
 
 ```yml
 steps:
