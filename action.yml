@@ -24,6 +24,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Install Az PowerShell module
+      run: Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+      shell: pwsh
+
     - name: Run Pre-deployment script
       run: |
         ${{ github.action_path }}/PrePostDeploymentScript.ps1 `
