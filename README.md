@@ -41,7 +41,7 @@ steps:
       enable-AzPSSession: true 
 
   - name: Deploy resources
-    uses: Azure/data-factory-deploy-action@v1.0.0
+    uses: Azure/data-factory-deploy-action@v1.0.1
     with:
       resourceGroupName: myResourceGroup
       dataFactoryName: myDataFactory
