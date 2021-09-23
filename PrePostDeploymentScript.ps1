@@ -134,6 +134,7 @@ function Get-SortedLinkedServices {
     $SortedList
 }
 
+Write-Host "Reading $armTemplate file"
 $templateJson = Get-Content $armTemplate | ConvertFrom-Json
 $resources = $templateJson.resources
 
