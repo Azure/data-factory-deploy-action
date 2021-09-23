@@ -26,11 +26,11 @@ runs:
   steps:
     - name: Run Pre-deployment script
       run: |
-        ${{ github.action_path }}/PrePostDeploymentScript.ps1 \
-          -armTemplate "${{ inputs.armTemplateFile }}" \
-          -ResourceGroupName "${{ inputs.resourceGroupName }}" \
-          -DataFactoryName "${{ inputs.dataFactoryName }}" \
-          -predeployment $true \
+        ${{ github.action_path }}/PrePostDeploymentScript.ps1 `
+          -armTemplate "${{ inputs.armTemplateFile }}" `
+          -ResourceGroupName "${{ inputs.resourceGroupName }}" `
+          -DataFactoryName "${{ inputs.dataFactoryName }}" `
+          -predeployment $true `
           -deleteDeployment $false
       shell: pwsh
 
@@ -43,10 +43,10 @@ runs:
         
     - name: Run Post-deployment script
       run: |
-        ${{ github.action_path }}/PrePostDeploymentScript.ps1 \
-          -armTemplate "${{ inputs.armTemplateFile }}" \
-          -ResourceGroupName "${{ inputs.resourceGroupName }}" \
-          -DataFactoryName '${{ inputs.dataFactoryName }}' \
-          -predeployment $false \
+        ${{ github.action_path }}/PrePostDeploymentScript.ps1 `
+          -armTemplate "${{ inputs.armTemplateFile }}" `
+          -ResourceGroupName "${{ inputs.resourceGroupName }}" `
+          -DataFactoryName '${{ inputs.dataFactoryName }}' `
+          -predeployment $false `
           -deleteDeployment $true
       shell: pwsh
