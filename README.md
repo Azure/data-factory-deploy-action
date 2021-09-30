@@ -1,6 +1,6 @@
 # Azure Data Factory Deploy Action
 
-GitHub Action for side-effect free deployment of Azure Data Factory resources.
+GitHub Action that performs a side-effect free deployment of Azure Data Factory entities in a Data Factory instance.
 
 ## How it works
 
@@ -24,6 +24,9 @@ The action is useful on Continuous Deployment (CD) scenarios, where a step can b
 ## Getting Started
 
 ### Prerequisites
+
+* A GitHub repository integrated with an existing Azure Data Factory. For more info, see [Source control in Azure Data Factory](source-control.md).
+* An Azure service principal with `Contributor` role added as a secret on your GitHub repository. For more info, see [Create a service principal and add it to GitHub secret](https://docs.microsoft.com/azure/developer/github/connect-from-azure#create-a-service-principal-and-add-it-to-github-secret).
 
 If your GitHub Actions workflows are running on a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners), ensure you have installed:
 
