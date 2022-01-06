@@ -29,8 +29,7 @@ runs:
   using: 'composite'
   steps:
     - name: Install Az PowerShell module
-    - if: ${{ inputs.skipAzModuleInstallation != 'true' }}
-      run: Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+      run: if('${{ inputs.skipAzModuleInstallation }}' -ne 'true') { Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force }
       shell: pwsh
 
     - name: Run Pre-deployment script
