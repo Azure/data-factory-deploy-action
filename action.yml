@@ -20,11 +20,16 @@ inputs:
     description: 'Parameters which will be replaced in the ARM template'
     required: false
     default: ''
+  skipAzModuleInstallation:
+    description: 'Parameters which skip the Az module installation'
+    required: false
+    default: 'false'
 
 runs:
   using: 'composite'
   steps:
     - name: Install Az PowerShell module
+    - if: ${{ inputs.skipAzModuleInstallation != 'true' }}
       run: Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
       shell: pwsh
 
