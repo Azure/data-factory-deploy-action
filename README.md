@@ -44,13 +44,14 @@ steps:
       enable-AzPSSession: true 
 
   - name: Deploy resources
-    uses: Azure/data-factory-deploy-action@v1.0.1
+    uses: Azure/data-factory-deploy-action@v1.2.0
     with:
       resourceGroupName: myResourceGroup
       dataFactoryName: myDataFactory
       armTemplateFile: myArmTemplate.json
       # armTemplateParametersFile: myArmTemplateParameters.json [optional]
       # additionalParameters: 'key1=value key2=value keyN=value' [optional]
+      # skipAzModuleInstallation: true [optional]
 ```
 
 ### Inputs
@@ -61,7 +62,8 @@ steps:
 | `dataFactoryName` | Data Factory name | true |  |
 | `armTemplateFile` | Data Factory ARM template file | false | `ARMTemplateForFactory.json`  |
 | `armTemplateParametersFile` | Data Factory ARM template parameters file | false | `ARMTemplateParametersForFactory.json`  |
-| `additionalParameters` | Data Factory custom parameters. Key-values must be splitted by space. | false | |
+| `additionalParameters` | Data Factory custom parameters. Key-values must be splitted by space. | false |
+| `skipAzModuleInstallation` | Skip `Az` powershell module installation. | false | false |
 
 ## Contributing
 
