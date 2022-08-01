@@ -25,7 +25,7 @@ The action is useful on Continuous Deployment (CD) scenarios, where a step can b
 
 ### Prerequisites
 
-* A GitHub repository integrated with an existing Azure Data Factory. For more info, see [Source control in Azure Data Factory](source-control.md).
+* A GitHub repository integrated with an existing Azure Data Factory. For more info, see [Source control in Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/source-control).
 * An Azure service principal with `Contributor` role added as a secret on your GitHub repository. For more info, see [Create a service principal and add it to GitHub secret](https://docs.microsoft.com/azure/developer/github/connect-from-azure#create-a-service-principal-and-add-it-to-github-secret).
 
 If your GitHub Actions workflows are running on a [self-hosted runner](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners), ensure you have installed:
