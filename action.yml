@@ -24,6 +24,10 @@ inputs:
     description: 'Parameters which skip the Az module installation'
     required: false
     default: 'false'
+  cleanupResources:
+    description: 'Whether or not to run the cleanup step to remove deleted factory elements'
+    required: false
+    default: 'true'
 
 runs:
   using: 'composite'
@@ -56,5 +60,6 @@ runs:
           -ResourceGroupName "${{ inputs.resourceGroupName }}" `
           -DataFactoryName '${{ inputs.dataFactoryName }}' `
           -predeployment $false `
+          -cleanupResources ('${{ inputs.cleanupResources }}' -eq 'true') `
           -deleteDeployment $true
       shell: pwsh
