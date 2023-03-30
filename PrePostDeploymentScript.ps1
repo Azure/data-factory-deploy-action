@@ -285,6 +285,24 @@ else {
             }
         }
         Write-Host "Starting trigger" $_.Name
-        Start-AzDataFactoryV2Trigger -ResourceGroupName $ResourceGroupName -DataFactoryName $DataFactoryName -Name $_.Name -Force
+        $tried = 0
+        do {
+            $Failed = $false
+            Write-Host "Starting trigger" $_.Name
+            try {
+                $trigger = Get-AzDataFactoryV2Trigger -ResourceGroupName $ResourceGroupName -DataFactoryName $DataFactoryName -Name $_.Name
+                if ($trigger.RuntimeState -eq "Stopped") {
+                    Start-AzDataFactoryV2Trigger -ResourceGroupName $ResourceGroupName -DataFactoryName $DataFactoryName -Name $_.Name -Force
+                }
+            }
+            catch {
+                $Failed = $true
+                $tried = $tried + 1
+                if ($tried -gt 3)
+                {
+                    throw;
+                }
+            }
+        }while ($Failed)
     }
 }
