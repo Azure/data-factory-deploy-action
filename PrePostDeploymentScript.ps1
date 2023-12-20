@@ -176,7 +176,7 @@ if ($predeployment -eq $true) {
             }
         }
         Write-Host "Stopping trigger" $_.Name
-        Stop-AzDataFactoryV2Trigger -ResourceGroupName $ResourceGroupName -DataFactoryName $DataFactoryName -Name $_.Name -Force
+        #Stop-AzDataFactoryV2Trigger -ResourceGroupName $ResourceGroupName -DataFactoryName $DataFactoryName -Name $_.Name -Force
     }
 }
 else {
