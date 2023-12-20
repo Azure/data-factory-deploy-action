@@ -144,24 +144,24 @@ $triggerNamesInTemplate = $triggersInTemplate | ForEach-Object {$_.name.Substrin
 
 $triggersDeployed = Get-SortedTriggers -DataFactoryName $DataFactoryName -ResourceGroupName $ResourceGroupName
 
-$triggersToStop = $triggersDeployed | Where-Object { $triggerNamesInTemplate -contains $_.Name } | ForEach-Object { 
+<#$triggersToStop = $triggersDeployed | Where-Object { $triggerNamesInTemplate -contains $_.Name } | ForEach-Object { 
     New-Object PSObject -Property @{
         Name = $_.Name
         TriggerType = $_.Properties.GetType().Name 
     }
-}
+}#>
 $triggersToDelete = $triggersDeployed | Where-Object { $triggerNamesInTemplate -notcontains $_.Name } | ForEach-Object { 
     New-Object PSObject -Property @{
         Name = $_.Name
         TriggerType = $_.Properties.GetType().Name 
     }
 }
-$triggersToStart = $triggersInTemplate | Where-Object { $_.properties.runtimeState -eq "Started" -and ($_.properties.pipelines.Count -gt 0 -or $_.properties.pipeline.pipelineReference -ne $null)} | ForEach-Object { 
+<#$triggersToStart = $triggersInTemplate | Where-Object { $_.properties.runtimeState -eq "Started" -and ($_.properties.pipelines.Count -gt 0 -or $_.properties.pipeline.pipelineReference -ne $null)} | ForEach-Object { 
     New-Object PSObject -Property @{
         Name = $_.name.Substring(37, $_.name.Length-40)
         TriggerType = $_.Properties.type
     }
-}
+}#>
 
 if ($predeployment -eq $true) {
     #Stop all triggers
